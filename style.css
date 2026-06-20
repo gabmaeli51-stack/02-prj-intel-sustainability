@@ -1,1 +1,137 @@
-/* Add your CSS here */
+/* ==========================================
+   1. GLOBAL STYLES & INTEL BRANDING
+   ========================================== */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #f4f7f6;
+    color: #333;
+    overflow-x: hidden;
+}
+
+/* ==========================================
+   2. HERO / HEADER SECTION
+   ========================================== */
+header {
+    background: linear-gradient(135deg, #0068B5 0%, #003C71 100%); /* Intel Core Blues */
+    color: white;
+    text-align: center;
+    padding: 50px 20px;
+}
+
+header img {
+    max-width: 120px; /* Properly resizes the .svg logo */
+    margin-bottom: 15px;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+header p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+/* ==========================================
+   3. TIMELINE CONTAINER & FLEXBOX LAYOUT
+   ========================================== */
+/* Targets the <section> holding your cards */
+section {
+    display: flex;
+    flex-direction: row; /* Forces cards side-by-side on desktop */
+    gap: 25px;
+    padding: 60px 40px;
+    overflow-x: auto; /* Enables horizontal scroll */
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Helper text below the timeline */
+body > p {
+    text-align: center;
+    color: #666;
+    font-style: italic;
+    margin-bottom: 40px;
+}
+
+/* ==========================================
+   4. MILESTONE CARDS & INTERACTIVITY
+   ========================================== */
+/* Targets the 9 <div> elements inside your <section> */
+section > div {
+    background: white;
+    min-width: 320px;
+    max-width: 320px;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    border-top: 5px solid #0068B5; /* Intel blue accent line */
+    
+    /* LevelUp: CSS Transitions & Transforms */
+    transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), 
+                box-shadow 0.3s ease, 
+                background-color 0.3s ease;
+    cursor: pointer;
+}
+
+section > div h2 {
+    font-size: 2.2rem;
+    color: #0068B5;
+    margin-bottom: 5px;
+}
+
+section > div h3 {
+    font-size: 1.2rem;
+    color: #111;
+    margin-bottom: 15px;
+}
+
+/* Your paragraphs inside the cards act as the detail reveal */
+section > div p {
+    color: #555;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    
+    /* Initially visible, but changes state slightly on hover for UX */
+    transition: color 0.3s ease;
+}
+
+/* --- Card Hover Effects --- */
+section > div:hover {
+    transform: translateY(-10px); /* LevelUp: Lift transform */
+    box-shadow: 0 15px 30px rgba(0, 4, 56, 0.12); /* Dynamic shadow */
+    background-color: #fbfdff;
+}
+
+section > div:hover p {
+    color: #111; /* Text darkens to emphasize reading view */
+}
+
+/* ==========================================
+   5. RESPONSIVE DESIGN (MOBILE BREAKPOINT)
+   ========================================== */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2rem;
+    }
+
+    section {
+        flex-direction: column; /* Stacks vertically on phone screens */
+        padding: 30px 20px;
+    }
+
+    section > div {
+        min-width: 100%;
+        max-width: 100%;
+    }
+}
