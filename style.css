@@ -25,7 +25,7 @@ header {
 }
 
 header img {
-    max-width: 120px; /* Properly resizes the .svg logo */
+    max-width: 120px; /* Properly resizes the logo */
     margin-bottom: 15px;
 }
 
@@ -45,7 +45,6 @@ header p {
 /* ==========================================
    3. TIMELINE CONTAINER & FLEXBOX LAYOUT
    ========================================== */
-/* Targets the <section> holding your cards */
 section {
     display: flex;
     flex-direction: row; /* Forces cards side-by-side on desktop */
@@ -54,6 +53,9 @@ section {
     overflow-x: auto; /* Enables horizontal scroll */
     scroll-behavior: smooth;
     -webkit-overflow-scrolling: touch;
+    
+    /* LevelUp Extra Credit: Enable horizontal Scroll Snap */
+    scroll-snap-type: x mandatory; 
 }
 
 /* Helper text below the timeline */
@@ -67,15 +69,17 @@ body > p {
 /* ==========================================
    4. MILESTONE CARDS & INTERACTIVITY
    ========================================== */
-/* Targets the 9 <div> elements inside your <section> */
 section > div {
     background: white;
     min-width: 320px;
     max-width: 320px;
-    padding: 30px;
     border-radius: 12px;
+    overflow: hidden; /* Ensures the images don't pop out of the rounded corners */
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
     border-top: 5px solid #0068B5; /* Intel blue accent line */
+    
+    /* LevelUp Extra Credit: Align card for scroll snapping */
+    scroll-snap-align: start; 
     
     /* LevelUp: CSS Transitions & Transforms */
     transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), 
@@ -84,9 +88,23 @@ section > div {
     cursor: pointer;
 }
 
+/* Sizing configuration for timeline images */
+.card-img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+}
+
+/* Adds padding to the text block inside the card since padding was removed from container */
+section > div h2, section > div h3, section > div p {
+    padding-left: 25px;
+    padding-right: 25px;
+}
+
 section > div h2 {
     font-size: 2.2rem;
     color: #0068B5;
+    margin-top: 20px;
     margin-bottom: 5px;
 }
 
@@ -96,13 +114,11 @@ section > div h3 {
     margin-bottom: 15px;
 }
 
-/* Your paragraphs inside the cards act as the detail reveal */
 section > div p {
     color: #555;
     font-size: 0.95rem;
     line-height: 1.6;
-    
-    /* Initially visible, but changes state slightly on hover for UX */
+    margin-bottom: 25px;
     transition: color 0.3s ease;
 }
 
@@ -128,6 +144,7 @@ section > div:hover p {
     section {
         flex-direction: column; /* Stacks vertically on phone screens */
         padding: 30px 20px;
+        scroll-snap-type: none; /* Disables snapping on vertical mobile views */
     }
 
     section > div {
